@@ -1,0 +1,21 @@
+{
+  "name": "zoom-app",
+  "version": "1.0.0",
+  "description": "web app to get meeting data from zoom api",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test2": "npx nodemon --env-file=config/.env server.js ",
+    "start": "node --env-file=config/.env server.js"
+  },
+  "type": "module",
+  "author": "Abhay Panchoo",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.8.4",
+    "express": "^4.21.2",
+    "mongoose": "^8.13.0",
+    "nodemon": "^3.1.9",
+    "ws": "^8.18.1"
+  }
+}
