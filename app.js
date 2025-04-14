@@ -10,7 +10,7 @@ import session from 'express-session'
 import { socketManager } from './app/listeners/socketManager.js';
 import { authenticateMiddleware } from './app/middleware/authenticator.middleware.js';
 
-const hostname = '127.0.0.1';
+const hostname = 'localhost';
 const port = 3000;
 
 const __dirname = path.resolve("app");
