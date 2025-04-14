@@ -15,6 +15,6 @@ export const MeetingController = async(req, res) => {
             //get participant attendance and logs
             participantInformation.push(getParticipantInformation(participant, meeting._id))
         })
-        res.json({"meetingInformation" : meetingInformation, "participants" : participantInformation})
+        res.json({"data" : {"meetingInformation" : meetingInformation, "participants" : participantInformation}})
     }).catch(err => res.send(err))
 }

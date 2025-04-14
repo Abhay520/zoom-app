@@ -3,5 +3,5 @@ import { getListMeetingsInformation } from "../util/meeting.util.js"
 
 export const ListMeetingController = async(req, res) => {
     const meetings = await Meeting.find({}).exec()
-    res.json(getListMeetingsInformation(meetings))
+    res.json({"data" : getListMeetingsInformation(meetings)})
 }

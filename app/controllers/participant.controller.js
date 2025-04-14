@@ -8,7 +8,6 @@ export const ParticipantController = async(req, res) => {
     await Participant.findOne({userName : userName}).populate({
             path : 'logs'
     }).then(async participant =>{
-        let result = ""
         let meetingIds = new Set;
         let meetingLogs = []
         participant.logs.forEach(log => {meetingIds.add(log.meetingId.toString())})
@@ -17,7 +16,7 @@ export const ParticipantController = async(req, res) => {
                 //get meeting duration etc
                 let meetingInformation = getMeetingInformation(meeting)
                 let particpantInformation = getParticipantInformation(participant, meetingId)
-                meetingLogs.push({"meetingInformation" : meetingInformation, "meetingLog" : particpantInformation})
+                meetingLogs.push({"data" :{"meetingInformation" : meetingInformation, "meetingLog" : particpantInformation}})
             })
         }
         res.json({"userName" : userName, "meetingLogs" : meetingLogs})
