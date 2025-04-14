@@ -1,9 +1,11 @@
 import { Meeting } from "../models/meeting.model.js"
 import { Participant } from "../models/participant.model.js"
 import { getMeetingInformation } from "../util/meeting.util.js"
-import { getParticipantInformation } from "../util/participant.util.js"
+import { getListParticipantsInformation, getParticipantInformation } from "../util/participant.util.js"
 
-export const ParticipantController = async(req, res) => {
+const ParticipantController = {};
+
+ParticipantController.getParticipantByUserName = async(req, res) => {
     const userName = req.params.userName
     const participant = await Participant.exists({userName : userName}).exec();
     if(!participant){
@@ -26,3 +28,11 @@ export const ParticipantController = async(req, res) => {
         return res.status(200).json({"userName" : userName, "meetingLogs" : meetingLogs})
     }).catch(err => res.send(err))
 }
+
+
+ParticipantController.getAllParticipants = async(req, res) => {
+    const participants = await Participant.find({}).exec()
+    res.json({"data" : getListParticipantsInformation(participants)})
+}
+
+export default ParticipantController

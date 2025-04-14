@@ -39,6 +39,6 @@ app.use(bodyParser.json())
 app.use('/zoom-app/', home)
 app.use('/zoom-app/login', login)
 app.use('/zoom-app/meetings',authenticateMiddleware, meeting)
-app.use('/zoom-app/participant',authenticateMiddleware, participant)
+app.use('/zoom-app/participants',authenticateMiddleware, participant)
 
 

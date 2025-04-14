@@ -1,10 +1,9 @@
 import express from 'express'
-import { MeetingController } from '../controllers/meeting.controller.js';
-import { ListMeetingController } from '../controllers/listMeeting.controller.js';
+import MeetingController from '../controllers/meeting.controller.js'
 
 const router = express.Router()
 
-router.get('/', ListMeetingController)
-router.get('/:meetingId', MeetingController)
+router.get('/', MeetingController.getAllMeetings)
+router.get('/:meetingId', MeetingController.getMeetingById)
 
 export default router

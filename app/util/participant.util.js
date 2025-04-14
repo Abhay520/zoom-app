@@ -32,3 +32,13 @@ export const getParticipantInformation = (participant, meetingId) => {
 
     return {"userName" : userName, "timeSpent" : timeSpent, "logs" : meetingLogs}
 }
+
+
+export const getListParticipantsInformation = (participants) => {
+    let result = []
+    for(const participant of participants){
+        result.push(participant.userName)
+    }
+    result.sort()
+    return result
+}

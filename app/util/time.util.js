@@ -2,7 +2,7 @@ export const timeMessage = (date) => {
     if(!date) return null
     const canadaTime = date.toLocaleString('en-US', { timeZone: 'America/Montreal' }).toString();
     const mauritianTime = date.toLocaleString('en-US', { timeZone: 'Indian/Mauritius' }).toString();
-    return {"mauritianTime" : mauritianTime, "canadaTime" : canadaTime};
+    return {"mauritiusTime" : mauritianTime, "canadaTime" : canadaTime};
 }
 
 export const displayTimeSpent = (duration)  =>{
