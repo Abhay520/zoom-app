@@ -5,6 +5,10 @@ import { getParticipantInformation } from "../util/participant.util.js"
 
 export const ParticipantController = async(req, res) => {
     const userName = req.params.userName
+    const participant = await Participant.exists({userName : userName}).exec();
+    if(!participant){
+        return res.status(401).send('Participant does not exist!');
+    }
     await Participant.findOne({userName : userName}).populate({
             path : 'logs'
     }).then(async participant =>{
@@ -19,6 +23,6 @@ export const ParticipantController = async(req, res) => {
                 meetingLogs.push({"data" :{"meetingInformation" : meetingInformation, "meetingLog" : particpantInformation}})
             })
         }
-        res.json({"userName" : userName, "meetingLogs" : meetingLogs})
+        return res.status(200).json({"userName" : userName, "meetingLogs" : meetingLogs})
     }).catch(err => res.send(err))
 }

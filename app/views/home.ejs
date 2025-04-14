@@ -1,0 +1,13 @@
+<%- include("partials/header") -%>
+
+<div class="topnav">
+    <a class="active" href="/zoom-app">Home</a>
+    <a href="/zoom-app/login">Login</a>
+    <a href="/zoom-app/meetings">Meetings</a>
+    <div class="search-container">
+        <form action="/zoom-app/participant" method = "/post">
+          <input type="text" placeholder="Search participant..." name = "participant">
+          <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+    </div>
+</div>

@@ -1,9 +1,12 @@
 import express from 'express'
-import { HomeController } from '../controllers/home.controller.js';
 import { LoginController } from '../controllers/login.controller.js';
 
 const router = express.Router()
 
-router.get('/', HomeController)
+router.post('/', LoginController)
+
+router.get('/',(req, res) => {
+    res.render('login.ejs')
+})
 
 export default router
