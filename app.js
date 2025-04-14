@@ -28,7 +28,8 @@ app.set("views", path.join(__dirname, "", "views"));
 
 mongoose.connect(uri).then(() => console.log("Database connected successfully"))
 
-//socketManager()
+socketManager()
+
 app.use(session({ secret: 'your_session_secret', resave: false, saveUninitialized: true }));
 app.use(express.static(path.join(__dirname, "", 'public')));
 // parse application/x-www-form-urlencoded
