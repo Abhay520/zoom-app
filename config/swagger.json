@@ -1,0 +1,35 @@
+{
+    "definition": {
+        "openapi": "3.1.0",
+        "info": {
+          "title": "Zoom Express API with Swagger",
+          "version": "1.0.0",
+          "description":
+            "This is a web application which communicates with zoom websocket to get meeting information using Express and documented with Swagger",
+          "license": {
+            "name": "MIT",
+            "url": "https://spdx.org/licenses/MIT.html"
+          },
+          "contact": {
+            "name": "Abhay Panchoo",
+            "url": "https://abhayproject.xyz/zoom-app",
+            "email": ""
+          }
+        },
+        "servers": [
+          {
+            "url": "http://localhost:3000/zoom-app"
+          }
+        ],
+        "components": {
+          "securitySchemes": {
+            "BearerAuth": {
+              "type": "http",
+              "scheme": "bearer",
+              "name" : "Authorization"
+            }
+          }
+        }
+      },
+      "apis": ["./app/routes/*.js"]
+}

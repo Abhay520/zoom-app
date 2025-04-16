@@ -22,7 +22,7 @@ ParticipantController.getParticipantByUserName = async(req, res) => {
                 //get meeting duration etc
                 let meetingInformation = getMeetingInformation(meeting)
                 let particpantInformation = getParticipantInformation(participant, meetingId)
-                meetingLogs.push({"data" :{"meetingInformation" : meetingInformation, "meetingLog" : particpantInformation}})
+                meetingLogs.push({"meetingInformation" : meetingInformation, "meetingLog" : particpantInformation})
             })
         }
         return res.status(200).json({"userName" : userName, "meetingLogs" : meetingLogs})

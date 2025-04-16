@@ -11,49 +11,16 @@ import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express'
 import { socketManager } from './app/listeners/socketManager.js';
 import { authenticateMiddleware } from './app/middleware/authenticator.middleware.js';
+import { readFile } from 'fs/promises';
 
 const hostname = 'localhost';
 const port = 3000;
 
 const __dirname = path.resolve("app");
 
-const options = {
-  definition: {
-    openapi: "3.1.0",
-    info: {
-      title: "Zoom Express API with Swagger",
-      version: "1.0.0",
-      description:
-        "This is a web application which communicates with zoom websocket to get meeting information using Express and documented with Swagger",
-      license: {
-        name: "MIT",
-        url: "https://spdx.org/licenses/MIT.html",
-      },
-      contact: {
-        name: "Abhay Panchoo",
-        url: "https://abhayproject.xyz/zoom-app",
-        email: "",
-      },
-    },
-    servers: [
-      {
-        url: "http://localhost:3000/zoom-app",
-      },
-    ],
-    components: {
-      securitySchemes: {
-        BearerAuth: {
-          type: 'http',
-          scheme: 'bearer',
-          name : 'Authorization'
-        },
-      },
-    }
-  },
-  apis: ["./app/routes/*.js"],
-};
+const swaggerJSON = JSON.parse(await readFile(new URL('./config/swagger.json', import.meta.url)))
 
-const specs = swaggerJSDoc(options);
+const specs = swaggerJSDoc(swaggerJSON);
 
 const uri = `mongodb+srv://${process.env.db_username}:${process.env.db_password}@zoomcluster.5dtrkuf.mongodb.net/?retryWrites=true&w=majority&appName=ZoomCluster`
 
@@ -70,9 +37,8 @@ app.set("views", path.join(__dirname, "", "views"));
 
 mongoose.connect(uri).then(() => console.log("Database connected successfully"))
 
-//socketManager()
-
 if (process.env.NODE_ENV === "production") {
+  socketManager()
   app.set('trust proxy', 1) // trust first proxy
   app.use(session({secret: 'keyboard cat',resave: false,saveUninitialized: true,
     cookie: { secure: true , maxAge : 600000}

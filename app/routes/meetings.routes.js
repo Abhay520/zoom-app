@@ -53,8 +53,10 @@ import MeetingController from '../controllers/meeting.controller.js'
  *       500:
  *         description: Some server error
  *
-* /meetings/{id}:
+* /meetings/{meetingId}:
  *   get:
+ *     security:
+ *       - BearerAuth: []
  *     summary: Get the meeting by id
  *     tags: [Meetings]
  *     parameters:
