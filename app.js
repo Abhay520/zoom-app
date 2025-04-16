@@ -10,7 +10,7 @@ import session from 'express-session'
 import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express'
 import { socketManager } from './app/listeners/socketManager.js';
-import { authenticateMiddleware } from './app/middleware/authenticator.middleware.js';
+import { authenticateMiddleware } from './app/middleware/authenticate.middleware.js';
 import { readFile } from 'fs/promises';
 
 const hostname = 'localhost';

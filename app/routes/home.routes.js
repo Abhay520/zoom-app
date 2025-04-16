@@ -1,6 +1,5 @@
 import express from 'express'
 import { HomeController } from '../controllers/home.controller.js';
-import { LoginController } from '../controllers/login.controller.js';
 
 const router = express.Router()
 
