@@ -72,7 +72,7 @@ const router = express.Router()
  *   get:
  *     security:
  *       - BearerAuth: []
- *     summary: Get the meeting by id
+ *     summary: Get the participant by username
  *     tags: [Participants]
  *     parameters:
  *       - in: path
