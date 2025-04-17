@@ -13,7 +13,7 @@ import { socketManager } from './app/listeners/socketManager.js';
 import { authenticateMiddleware } from './app/middleware/authenticate.middleware.js';
 import { readFile } from 'fs/promises';
 import rateLimit from 'express-rate-limit';
-import { MemoryStore } from 'memorystore';
+import  createMemoryStore  from 'memorystore';
 
 const hostname = 'localhost';
 const port = 3000;
@@ -43,6 +43,8 @@ app.set('view engine', 'ejs');
 app.set("views", path.join(__dirname, "", "views"));
 
 mongoose.connect(uri).then(() => console.log("Database connected successfully"))
+
+const MemoryStore = createMemoryStore(session)
 
 if (process.env.NODE_ENV === "production") {
   socketManager()
