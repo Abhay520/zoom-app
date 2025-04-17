@@ -50,6 +50,8 @@ import MeetingController from '../controllers/meeting.controller.js'
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Meeting'
+ *       429:
+ *         description: Too many api requests (slow down)
  *       500:
  *         description: Some server error
  *
@@ -73,6 +75,8 @@ import MeetingController from '../controllers/meeting.controller.js'
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Meeting'
+ *       429:
+ *         description: Too many api requests (slow down)
  *       500:
  *         description: Some server error
  *

@@ -12,9 +12,15 @@ import swaggerUi from 'swagger-ui-express'
 import { socketManager } from './app/listeners/socketManager.js';
 import { authenticateMiddleware } from './app/middleware/authenticate.middleware.js';
 import { readFile } from 'fs/promises';
+import rateLimit from 'express-rate-limit';
 
 const hostname = 'localhost';
 const port = 3000;
+
+const limiter = rateLimit({
+  windowMs:  60 * 1000,
+  max: 10,
+});
 
 const __dirname = path.resolve("app");
 
@@ -42,14 +48,14 @@ if (process.env.NODE_ENV === "production") {
   app.set('trust proxy', 1) // trust first proxy
   app.use(session({secret: process.env.SESSION_SECRET,resave: false,saveUninitialized: true,
     proxy : true,
-    cookie: { secure: true , maxAge : 60 * 1000}
+    cookie: { secure: true , maxAge : 10 * 60 * 1000}
   }))
 }
-
-if (process.env.NODE_ENV === "development") {
-  app.use(session({ secret: 'keyboard cat', resave: false, saveUninitialized: true }));
+else if (process.env.NODE_ENV === "development") {
+  app.use(session({ secret: process.env.SESSION_SECRET, resave: false, saveUninitialized: true }));
 }
 
+app.use(limiter);
 app.use(express.static(path.join(__dirname, "", 'public')));
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))

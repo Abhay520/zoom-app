@@ -65,6 +65,8 @@ const router = express.Router()
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Participant'
+ *       429:
+ *         description: Too many api requests (slow down)
  *       500:
  *         description: Some server error
  *
@@ -88,6 +90,8 @@ const router = express.Router()
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Participant'
+ *       429:
+ *         description: Too many api requests (slow down)
  *       500:
  *         description: Some server error
  *
