@@ -13,6 +13,7 @@ import { socketManager } from './app/listeners/socketManager.js';
 import { authenticateMiddleware } from './app/middleware/authenticate.middleware.js';
 import { readFile } from 'fs/promises';
 import rateLimit from 'express-rate-limit';
+import { MemoryStore } from 'memorystore';
 
 const hostname = 'localhost';
 const port = 3000;
@@ -48,7 +49,10 @@ if (process.env.NODE_ENV === "production") {
   app.set('trust proxy', 1) // trust first proxy
   app.use(session({secret: process.env.SESSION_SECRET,resave: false,saveUninitialized: true,
     proxy : true,
-    cookie: { secure: true , maxAge : 10 * 60 * 1000}
+    cookie: { secure: true , maxAge : 10 * 60 * 1000},
+    store: new MemoryStore({
+      checkPeriod: 10 * 60 * 1000
+    }),
   }))
 }
 else if (process.env.NODE_ENV === "development") {
